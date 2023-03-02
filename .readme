@@ -1,0 +1,53 @@
+1. 1.開啟終端機輸入下面兩行指令
+npm init -y 
+npm install webpack webpack-cli --save-dev
+// -y 的意思就是省略一些提問快速初始化
+
+2.打開 package.json 並在 scripts 底下新增指令
+{
+    "scripts": {
+        "build": "webpack" 
+    },
+}
+
+3.新增 webpack.config.js 檔案
+module.exports = {
+    mode: 'development', 
+    entry: './main.js', // webpack 打包的起始檔案，進入點
+    output: {
+        path: __dirname, // 在這個 config 檔同層的目錄
+        filename: 'bundle.js'// 打包輸出的檔名
+    }
+}
+
+- __dirname：     總是回傳被執行 js 檔所在資料夾的絕對路徑
+- __filename：    總是回傳被執行 js 檔的絕對路徑
+- process.cwd()： 總是回傳執行 node 指令時所在的資料夾之絕對路徑
+- ./:             和 process.cwd() 一樣
+
+4.最後在終端機下
+npm run build
+
+==========================================================
+安裝 babel
+npm install babel-loader @babel/core @babel/preset-env --save-dev
+
+載入模組
+// 配置選項決定如何處理不同類型的模組
+module: {
+    // 創建模組時，匹配請求的規則數組
+    rules: [
+        {
+            // 查找符合 Regex (正規表達式) 副檔名的模組，如符合即使用 use 內指定的 loader
+            test: /\.m?js$/,
+            exclude: /(node_modules|bower_components)/,
+            // 定義需加載的 loader，可接受字串陣列或物件陣列傳遞。加載是由右到左依序作用
+            use: {
+                    loader: 'babel-loader',
+                    options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
+        }
+    ]
+}

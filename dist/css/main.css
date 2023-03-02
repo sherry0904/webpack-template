@@ -1,0 +1,16 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+@charset "UTF-8";
+.wrap {
+  font-family: 'Noto Sans TC', '微軟正黑體', sans-serif;
+  padding: 30px;
+  background-color: #ccc;
+  background-image: url("../img/test.jpg");
+}
+
+.wrap h2 {
+  color: blue;
+  border: 1px solid #000;
+}
+/*# sourceMappingURL=style.css.map */
+
+/*# sourceMappingURL=main.css.map*/
